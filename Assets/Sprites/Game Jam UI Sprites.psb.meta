@@ -94,7 +94,28 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Rectangle 1
+  - name: Layer 1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 473
+      y: 4
+      width: 0
+      height: 0
+    spriteID: 0d2e026a3dff0455582151e99fc6d5f4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 473, y: 4}
+    spritePosition: {x: 0, y: 2048}
+  - name: Dialogue Box Sprite
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -151,8 +172,18 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Rectangle 1
-    spriteName: Rectangle 1
+  - name: Layer 1
+    spriteName: Layer 1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0d2e026a3dff0455582151e99fc6d5f4
+    layerID: 5
+    mosaicPosition: {x: 473, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dialogue Box Sprite
+    spriteName: Dialogue Box Sprite
     isGroup: 0
     parentIndex: -1
     spriteID: f2d7d19ce83ee1647876d5413cb31c26
