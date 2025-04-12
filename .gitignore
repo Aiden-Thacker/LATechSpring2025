@@ -75,3 +75,5 @@ crashlytics-build.properties
 
 # Art files
 *.clip
+*.psb
+*.psb.meta
