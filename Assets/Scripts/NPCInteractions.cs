@@ -11,12 +11,14 @@ public class NPCInteractions : MonoBehaviour {
     private int index;
 
     public GameObject continueButton;
+    public Button chatButton;
     public float wordSpeed;
     public bool playerInRange;
 
     void Start() {
         dialogPanel.SetActive(false);
         continueButton.SetActive(false);
+        chatButton.gameObject.SetActive(false);
     }
 
     void Update() {
@@ -24,6 +26,10 @@ public class NPCInteractions : MonoBehaviour {
             if (dialogPanel.activeInHierarchy) {
                 resetText();
             } else {
+                if (chatButton.gameObject.activeInHierarchy) {
+                    chatButton.gameObject.SetActive(false);
+                }
+                
                 dialogPanel.SetActive(true);
                 StartCoroutine(Typing());
             }
@@ -38,6 +44,7 @@ public class NPCInteractions : MonoBehaviour {
         if (other.CompareTag("Player")) {
             playerInRange = true;
             Debug.Log("Player in range of NPC");
+            chatButton.gameObject.SetActive(true);
         }
     }
 
@@ -45,6 +52,7 @@ public class NPCInteractions : MonoBehaviour {
         if (other.CompareTag("Player")) {
             playerInRange = false;
             resetText();
+            chatButton.gameObject.SetActive(false);
         }
     }
 
@@ -52,6 +60,11 @@ public class NPCInteractions : MonoBehaviour {
         firstNPCdialog.text = "";
         index = 0;
         dialogPanel.SetActive(false);
+        if (chatButton.gameObject.activeInHierarchy) {
+            return;
+        } else {
+            chatButton.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator Typing() {
