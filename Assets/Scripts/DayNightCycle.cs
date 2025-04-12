@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 
 public class DayNightCycle : MonoBehaviour
 {
+    private LoseMenu loseScreen;
     public Volume volume;
     public float tick;
     public float seconds;
@@ -17,6 +18,7 @@ public class DayNightCycle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        loseScreen = FindFirstObjectByType<LoseMenu>();
         volume = GetComponent<Volume>();
     }
 
@@ -60,6 +62,7 @@ public class DayNightCycle : MonoBehaviour
         if(hours == 12)
         {
             Debug.Log("You Lose");
+            loseScreen.Lose();
         }
 
         // if(hours >= 6 && hours < 7) // Dawn
