@@ -29,7 +29,7 @@ public class NPCInteractions : MonoBehaviour {
                 if (chatButton.gameObject.activeInHierarchy) {
                     chatButton.gameObject.SetActive(false);
                 }
-                
+
                 dialogPanel.SetActive(true);
                 StartCoroutine(Typing());
             }
@@ -51,7 +51,6 @@ public class NPCInteractions : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             playerInRange = false;
-            resetText();
             chatButton.gameObject.SetActive(false);
         }
     }
@@ -60,11 +59,16 @@ public class NPCInteractions : MonoBehaviour {
         firstNPCdialog.text = "";
         index = 0;
         dialogPanel.SetActive(false);
-        if (chatButton.gameObject.activeInHierarchy) {
+        /*if (chatButton.gameObject.activeInHierarchy) {
             return;
         } else {
             chatButton.gameObject.SetActive(true);
-        }
+        } */
+
+        // call animation transition here
+            // set animation trigger
+            // wait for a few seconds
+            // load next scene
     }
 
     IEnumerator Typing() {
