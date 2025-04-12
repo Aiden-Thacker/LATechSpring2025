@@ -94,18 +94,18 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 1
+  - name: Button Background
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.6050619, y: 0.509074}
+    alignment: 9
+    border: {x: 493, y: 0, z: 244, w: 0}
     rect:
       serializedVersion: 2
-      x: 473
+      x: 4
       y: 4
-      width: 0
-      height: 0
-    spriteID: 0d2e026a3dff0455582151e99fc6d5f4
+      width: 1220
+      height: 387
+    spriteID: 9abb743d0e6ef4223a8367b19854c46f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,8 +113,29 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 473, y: 4}
-    spritePosition: {x: 0, y: 2048}
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 82, y: 758}
+  - name: Chara Name Box Sprite
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 178, y: 173, z: 176, w: 162}
+    rect:
+      serializedVersion: 2
+      x: 473
+      y: 399
+      width: 400
+      height: 400
+    spriteID: 23f8a53005f724883a92dad08e0462a1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 473, y: 399}
+    spritePosition: {x: 873, y: 1476}
   - name: Dialogue Box Sprite
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -123,7 +144,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 399
       width: 461
       height: 437
     spriteID: f2d7d19ce83ee1647876d5413cb31c26
@@ -134,7 +155,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: 399}
     spritePosition: {x: 147, y: 1456}
   characterData:
     bones: []
@@ -220,13 +241,23 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Layer 1
-    spriteName: Layer 1
+  - name: Button Background
+    spriteName: Button Background
     isGroup: 0
     parentIndex: -1
-    spriteID: 0d2e026a3dff0455582151e99fc6d5f4
-    layerID: 5
-    mosaicPosition: {x: 473, y: 4}
+    spriteID: 9abb743d0e6ef4223a8367b19854c46f
+    layerID: 8
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Chara Name Box Sprite
+    spriteName: Chara Name Box Sprite
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 23f8a53005f724883a92dad08e0462a1
+    layerID: 6
+    mosaicPosition: {x: 473, y: 399}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -236,7 +267,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: f2d7d19ce83ee1647876d5413cb31c26
     layerID: 3
-    mosaicPosition: {x: 4, y: 4}
+    mosaicPosition: {x: 4, y: 399}
     flatten: 0
     isImported: 1
     isVisible: 1
