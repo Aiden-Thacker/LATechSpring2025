@@ -33,6 +33,6 @@ public class PlayerController : MonoBehaviour
 
     // using this instead of update because its more reliable than controlling physics based on frame rate
     void FixedUpdate() {
-        rb.MovePosition(rb.position + input * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + input.normalized * speed * Time.fixedDeltaTime);
     }
 }
