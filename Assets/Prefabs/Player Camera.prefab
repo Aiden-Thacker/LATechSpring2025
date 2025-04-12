@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5094447000494385339}
   - component: {fileID: 6431571340247083745}
   - component: {fileID: 399565149881055769}
-  - component: {fileID: 1295789522884220045}
+  - component: {fileID: 6047743886453909350}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   offset: {x: 0, y: 0, z: -10}
---- !u!114 &1295789522884220045
+--- !u!114 &6047743886453909350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,13 +125,13 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 449
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
