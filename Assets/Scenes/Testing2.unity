@@ -301,7 +301,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -695,7 +695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Text for the NPC''s dialog or whateva '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -984,8 +984,8 @@ MonoBehaviour:
   NPCScript:
   - Welcome to scene two!
   - Almost to the end...
-  continueButton: {fileID: 1161044826}
   chatButton: {fileID: 1438994901}
+  continueButton: {fileID: 1161044828}
   wordSpeed: 0.05
   playerInRange: 0
 --- !u!1 &668176890
@@ -1115,7 +1115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1161044827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1179,19 +1179,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1161044829}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 581610513}
-        m_TargetAssemblyTypeName: NPCInteractions, Assembly-CSharp
-        m_MethodName: nextLine
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1161044829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,12 +1365,12 @@ GameObject:
   - component: {fileID: 1438994902}
   - component: {fileID: 1438994901}
   m_Layer: 5
-  m_Name: Button
+  m_Name: chat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1438994900
 RectTransform:
   m_ObjectHideFlags: 0
