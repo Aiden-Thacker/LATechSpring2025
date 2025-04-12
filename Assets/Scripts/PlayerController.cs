@@ -9,11 +9,16 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
 
+    public Transform playerTransform;
+    public GameObject spawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        playerTransform.position = spawnPoint.transform.position;
     }
 
     // Update is called once per frame
