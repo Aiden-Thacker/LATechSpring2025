@@ -9,20 +9,23 @@ public class NPCInteractions : MonoBehaviour {
     public TextMeshProUGUI firstNPCdialog;
     public string[] NPCScript;                      // each index holds a string of text, can add different sentences to different indexes
     private int index;
+    public PlayerController playerController;
 
     public Button chatButton;
-    public Button continueButton;
+    public TextMeshProUGUI continueText;
     public float wordSpeed;
     public bool playerInRange;
+    
 
     void Start() {
         dialogPanel.SetActive(false);
         chatButton.gameObject.SetActive(false);
-        continueButton.gameObject.SetActive(false);
+        continueText.gameObject.SetActive(false);
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
+            playerController.enabled = false;
             if (dialogPanel.activeInHierarchy) {
                 resetText();
             } else {
@@ -35,8 +38,8 @@ public class NPCInteractions : MonoBehaviour {
             }
         }
 
-        if ((firstNPCdialog.text == NPCScript[index])) {
-            continueButton.gameObject.SetActive(true);
+        if (firstNPCdialog.text == NPCScript[index]) {
+            continueText.gameObject.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.Return)) {
                 Debug.Log("Enter key was pressed");
@@ -64,6 +67,8 @@ public class NPCInteractions : MonoBehaviour {
         firstNPCdialog.text = "";
         index = 0;
         dialogPanel.SetActive(false);
+        playerController.enabled = true;
+
         /*if (chatButton.gameObject.activeInHierarchy) {
             return;
         } else {
@@ -85,7 +90,7 @@ public class NPCInteractions : MonoBehaviour {
 
     public void nextLine() {
         if (index < (NPCScript.Length - 1)) {
-            continueButton.gameObject.SetActive(false);
+            continueText.gameObject.SetActive(false);
             index++;
             firstNPCdialog.text = "";
             StartCoroutine(Typing());
