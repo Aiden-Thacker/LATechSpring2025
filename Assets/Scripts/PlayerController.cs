@@ -7,17 +7,23 @@ public class PlayerController : MonoBehaviour
     public float speed = 3f;
     Vector2 input;
     public Rigidbody2D rb;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update() {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
+
+        anim.SetFloat("Horizontal", input.x);
+        anim.SetFloat("Vertical", input.y);
+        anim.SetFloat("Speed", input.sqrMagnitude);
     }
 
     // using this instead of update because its more reliable than controlling physics based on frame rate
