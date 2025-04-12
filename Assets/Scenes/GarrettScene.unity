@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 10771156}
   - component: {fileID: 10771155}
   m_Layer: 5
-  m_Name: Text (TMP) (4)
+  m_Name: Paste Dialogue Here Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,8 +156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -438, y: -267}
-  m_SizeDelta: {x: 458.0742, y: 129.2109}
+  m_AnchoredPosition: {x: -210.58789, y: -320.65906}
+  m_SizeDelta: {x: 1137.7552, y: 246.7498}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &10771155
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Yap yap yap
+  m_text: "\t"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a0dc0f48d4a024785b2b9a45aaa503d9, type: 2}
   m_sharedMaterial: {fileID: -5800271462236156367, guid: a0dc0f48d4a024785b2b9a45aaa503d9, type: 2}
@@ -206,15 +206,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 73.8
-  m_fontSizeBase: 73.8
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
