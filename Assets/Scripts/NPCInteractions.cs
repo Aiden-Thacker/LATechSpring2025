@@ -7,6 +7,7 @@ using TMPro;
 public class NPCInteractions : MonoBehaviour {
     public GameObject dialogPanel;
     public TextMeshProUGUI firstNPCdialog;
+    public SpriteRenderer npcRenderer;
     public string[] NPCScript;                      // each index holds a string of text, can add different sentences to different indexes
     private int index;
     public PlayerController playerController;
@@ -21,11 +22,13 @@ public class NPCInteractions : MonoBehaviour {
         dialogPanel.SetActive(false);
         chatButton.gameObject.SetActive(false);
         continueText.gameObject.SetActive(false);
+        npcRenderer.enabled = false;
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
             playerController.enabled = false;
+            npcRenderer.enabled = true;
             if (dialogPanel.activeInHierarchy) {
                 resetText();
             } else {
