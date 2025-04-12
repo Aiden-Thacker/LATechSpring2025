@@ -10,15 +10,15 @@ public class NPCInteractions : MonoBehaviour {
     public string[] NPCScript;                      // each index holds a string of text, can add different sentences to different indexes
     private int index;
 
-    public GameObject continueButton;
     public Button chatButton;
+    public Button continueButton;
     public float wordSpeed;
     public bool playerInRange;
 
     void Start() {
         dialogPanel.SetActive(false);
-        continueButton.SetActive(false);
         chatButton.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
     }
 
     void Update() {
@@ -35,8 +35,13 @@ public class NPCInteractions : MonoBehaviour {
             }
         }
 
-        if (firstNPCdialog.text == NPCScript[index]) {
-            continueButton.SetActive(true);
+        if ((firstNPCdialog.text == NPCScript[index])) {
+            continueButton.gameObject.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                Debug.Log("Enter key was pressed");
+                nextLine();
+            }
         }
     }
 
@@ -79,9 +84,8 @@ public class NPCInteractions : MonoBehaviour {
     }
 
     public void nextLine() {
-        continueButton.SetActive(false);
-
         if (index < (NPCScript.Length - 1)) {
+            continueButton.gameObject.SetActive(false);
             index++;
             firstNPCdialog.text = "";
             StartCoroutine(Typing());
