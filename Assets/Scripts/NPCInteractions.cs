@@ -260,6 +260,7 @@ public class NPCInteractions : MonoBehaviour
                 {
                     fadeOut = false;
                 }
+                GameManager.instance.startTimer = true;
             }
         }
     }
