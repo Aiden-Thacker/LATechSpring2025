@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class NPCInteractions : MonoBehaviour {
     public GameObject dialogPanel;
     public TextMeshProUGUI firstNPCdialog;
+    public TextMeshProUGUI NPCNameDialog;
     public SpriteRenderer npcRenderer;
+    public string[] NPCNames;
     public string[] NPCScript;                      // each index holds a string of text, can add different sentences to different indexes
     private int index;
     public PlayerController playerController;
@@ -42,12 +45,25 @@ public class NPCInteractions : MonoBehaviour {
             }
         }
 
-        if (firstNPCdialog.text == NPCScript[index]) {
+        if(NPCNames.Length == 0)
+        {
+            if (firstNPCdialog.text == NPCScript[index]) {
             continueText.gameObject.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.Return)) {
                 Debug.Log("Enter key was pressed");
                 nextLine();
+            }
+            }
+        }else 
+        {
+            if (firstNPCdialog.text == NPCScript[index] && NPCNameDialog.text == NPCNames[index]) {
+            continueText.gameObject.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                Debug.Log("Enter key was pressed");
+                nextLine();
+            }
             }
         }
     }

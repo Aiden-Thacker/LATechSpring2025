@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8536544883480237501}
   - component: {fileID: 6683296462728796655}
   - component: {fileID: 7790952838311431959}
+  - component: {fileID: 1581410730436317735}
   m_Layer: 8
   m_Name: Mari
   m_TagString: Untagged
@@ -148,3 +149,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1581410730436317735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467612731665300881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b313ed16a5d016a479e360a9afe5da25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogPanel: {fileID: 0}
+  firstNPCdialog: {fileID: 0}
+  NPCNameDialog: {fileID: 0}
+  npcRenderer: {fileID: 0}
+  NPCNames: []
+  NPCScript: []
+  playerController: {fileID: 0}
+  chatButton: {fileID: 0}
+  continueText: {fileID: 0}
+  wordSpeed: 0
+  playerInRange: 0
