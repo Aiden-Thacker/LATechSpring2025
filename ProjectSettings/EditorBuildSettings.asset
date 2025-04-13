@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StreetScene.unity
     guid: e46fc3402b752504eb8d5e003b6b9c1c
+  - enabled: 1
+    path: Assets/Scenes/WinningScene.unity
+    guid: 25c721e523564904584864766b412871
+  - enabled: 1
+    path: Assets/Scenes/EndCredits.unity
+    guid: cf4749c61892b8f4b95df34ad2eed51b
   m_configObjects: {}
