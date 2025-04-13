@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 0}
-  tick: 300
+  tick: 450
   seconds: 0
   min: 0
   hours: 0
   activateLights: 0
   lights: []
+  startTimer: 0
