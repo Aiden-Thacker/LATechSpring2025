@@ -30,6 +30,5 @@ public class CutScene : MonoBehaviour
         npcs[0].SetActive(true);
         npcs[0].GetComponent<CapsuleCollider2D>().enabled = true;
         npcs[0].GetComponent<SpriteRenderer>().enabled = false;
-
     }
 }

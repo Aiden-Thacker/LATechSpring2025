@@ -21,6 +21,7 @@ public class NPCInteractions : MonoBehaviour
     public TextMeshProUGUI continueText;
     public float wordSpeed;
     public bool autoStart;
+    public bool godSpeedAiden;
     public bool playerInRange;
     public bool chatChecker;
     public bool turnOffNPCRenderer;
@@ -59,6 +60,8 @@ public class NPCInteractions : MonoBehaviour
         {
             chatChecker = true;
         }
+
+        godSpeedAiden = true;
     }
 
     void Update()
@@ -67,9 +70,6 @@ public class NPCInteractions : MonoBehaviour
         {
             startChat.SetActive(true);
             Debug.Log("Show up");
-        }else
-        {
-            startChat.SetActive(false);
         }
         if (autoStart && playerInRange)
         {
@@ -91,6 +91,7 @@ public class NPCInteractions : MonoBehaviour
         {
             playerController.enabled = false;
             npcRenderer.enabled = true;
+            godSpeedAiden = false;
             if (dialogPanel.activeInHierarchy)
             {
                 resetText();
@@ -128,6 +129,11 @@ public class NPCInteractions : MonoBehaviour
                 nextLine();
             }
             }
+        }
+
+        if(!godSpeedAiden)
+        {
+            startChat.SetActive(false);
         }
 
         if (chatDone && countDownDialog != null)
@@ -225,6 +231,7 @@ public class NPCInteractions : MonoBehaviour
         fadeIn = false;
         fadeOut = true;
         yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
     }
 
     public void SameSceneFade()
