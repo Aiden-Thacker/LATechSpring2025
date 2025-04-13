@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private LoseMenu loseScreen;
+    public LoseMenu loseScreen;
     public Volume volume;
     public float tick;
     public float seconds;
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int hours;
 
     public bool activateLights;
-    public GameObject[] lights;
+    public List<GameObject> lights;
 
     public bool startTimer;
 
@@ -28,15 +29,28 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            instance.loseScreen = null;
+            instance.volume = null;
+            instance.lights.Clear();
             Destroy(gameObject);
         }
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        loseScreen = FindFirstObjectByType<LoseMenu>();
-        volume = FindFirstObjectByType<Volume>();
+        if (loseScreen == null)
+            loseScreen = FindFirstObjectByType<LoseMenu>();
+        
+        if (volume == null)
+            volume = FindFirstObjectByType<Volume>();
+
+        GameObject[] allTagged = GameObject.FindGameObjectsWithTag("Lights");
+        foreach (GameObject obj in allTagged)
+        {
+            obj.SetActive(false);
+            lights.Add(obj);
+        }
     }
 
     // Update is called once per frame
@@ -72,14 +86,14 @@ public class GameManager : MonoBehaviour
             if(!activateLights)
             {
                 //Turn On lights
-                for(int i = 0; i < lights.Length; i++)
+                for(int i = 0; i < lights.Count; i++)
                 {
                     lights[i].SetActive(true);
                 }
                 activateLights = true;
             }
         }
-        if(hours == 12)
+        if(hours == 12 && loseScreen != null)
         {
             Debug.Log("You Lose");
             loseScreen.Lose();

@@ -233,6 +233,7 @@ public class NPCInteractions : MonoBehaviour
             {
                 StartCoroutine(FadeOut());
             }
+            playerController.enabled = true;
             //Debug.Log("Got through coroutine");
         }
 
