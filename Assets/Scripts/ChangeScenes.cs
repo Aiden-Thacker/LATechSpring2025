@@ -10,10 +10,10 @@ public class ChangeScenes : MonoBehaviour{
     public bool fadeOut = false;
     public float timeToFade; 
 
-    public IEnumerator changeScenes() {
+    public IEnumerator changeScenes(string sceneName) {
         fadeIn = true;
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("StreetScene");
+        SceneManager.LoadScene(sceneName);
     }
 
     // Update is called once per frame
