@@ -93,7 +93,7 @@ public class NPCInteractions : MonoBehaviour
             else
             {
                 dialogPanel.SetActive(true);
-                Debug.Log("Help me");
+                //Debug.Log("Help me");
                 StartCoroutine(Typing());
             }
             autoStart = false;
