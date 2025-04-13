@@ -94,6 +94,10 @@ public class NPCInteractions : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && playerInRange)
         {
+            if (soundRoutine != null) {
+                StopCoroutine(soundRoutine);
+                soundRoutine = null;
+            }
             playerController.enabled = false;
             npcRenderer.enabled = true;
             godSpeedAiden = false;
