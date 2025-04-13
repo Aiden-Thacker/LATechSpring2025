@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
-public class NPCInteractions : MonoBehaviour {
+public class NPCInteractions : MonoBehaviour
+{
     public GameObject dialogPanel;
     public TextMeshProUGUI firstNPCdialog;
     public TextMeshProUGUI NPCNameDialog;
@@ -25,48 +26,61 @@ public class NPCInteractions : MonoBehaviour {
     public string goToScene;
     public ChangeScenes sceneScript;
 
+    public bool chatDone;
     public CanvasGroup canvasGroup;
     public bool fadeIn = false;
     public bool fadeOut = false;
-    public float timeToFade; 
+    public float timeToFade;
     public CutScene hidingSpot;
-    
+    public CutSceneCountDown countDownDialog;
 
-    void Start() {
+
+    void Start()
+    {
         dialogPanel.SetActive(false);
         chatButton.gameObject.SetActive(false);
         continueText.gameObject.SetActive(false);
-        if(turnOffNPCRenderer)
+        if (turnOffNPCRenderer)
         {
             npcRenderer.enabled = false;
-        }else
+        }
+        else
         {
             npcRenderer.enabled = true;
         }
     }
 
-    void Update() {
-        if(autoStart && playerInRange)
+    void Update()
+    {
+        if (autoStart && playerInRange)
         {
             chatButton.gameObject.SetActive(false);
             playerController.enabled = false;
             //npcRenderer.enabled = true;
-            if (dialogPanel.activeInHierarchy) {
+            if (dialogPanel.activeInHierarchy)
+            {
                 resetText();
-            } else {
+            }
+            else
+            {
                 chatChecker = false;
 
                 dialogPanel.SetActive(true);
+                Debug.Log("Help me");
                 StartCoroutine(Typing());
             }
             autoStart = false;
         }
-        else if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
+        else if (Input.GetKeyDown(KeyCode.E) && playerInRange)
+        {
             playerController.enabled = false;
             npcRenderer.enabled = true;
-            if (dialogPanel.activeInHierarchy) {
+            if (dialogPanel.activeInHierarchy)
+            {
                 resetText();
-            } else {
+            }
+            else
+            {
                 chatChecker = false;
 
                 dialogPanel.SetActive(true);
@@ -74,38 +88,53 @@ public class NPCInteractions : MonoBehaviour {
             }
         }
 
-        if(NPCNames.Length == 0)
+        if (NPCNames.Length == 0)
         {
-            if (firstNPCdialog.text == NPCScript[index]) {
+            if (firstNPCdialog.text == NPCScript[index])
+            {
                 continueText.gameObject.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.Return)) {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
                     Debug.Log("Enter key was pressed");
                     nextLine();
                 }
             }
-        }else 
+        }
+        else
         {
-            if (firstNPCdialog.text == NPCScript[index] && NPCNameDialog.text == NPCNames[index]) {
+            if (firstNPCdialog.text == NPCScript[index] && NPCNameDialog.text == NPCNames[index])
+            {
                 continueText.gameObject.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.Return)) {
-                Debug.Log("Enter key was pressed");
-                nextLine();
-            }
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    Debug.Log("Enter key was pressed");
+                    nextLine();
+                }
             }
         }
 
-        if(chatButton.gameObject.activeInHierarchy && chatChecker == false)
+        if (chatButton.gameObject.activeInHierarchy && chatChecker == false)
         {
             chatButton.gameObject.SetActive(false);
+        }
+
+        if (chatDone && countDownDialog != null)
+        {
+            if (countDownDialog.chatDone)
+            {
+                StartCoroutine(FadeIn());
+            }
         }
 
         SameSceneFade();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
             playerInRange = true;
             Debug.Log("Player in range of NPC");
             chatButton.gameObject.SetActive(true);
@@ -113,14 +142,17 @@ public class NPCInteractions : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
             playerInRange = false;
             chatChecker = false;
         }
     }
 
-    public void resetText() {
+    public void resetText()
+    {
         firstNPCdialog.text = "";
         NPCNameDialog.text = "";
         index = 0;
@@ -128,73 +160,89 @@ public class NPCInteractions : MonoBehaviour {
         playerController.enabled = true;
     }
 
-    IEnumerator Typing() {
-        if(NPCNames.Length != 0)
+    IEnumerator Typing()
+    {
+        if (NPCNames.Length != 0)
         {
             foreach (char letter in NPCNames[index].ToCharArray())
             {
                 NPCNameDialog.text += letter;
             }
         }
-        foreach (char letter in NPCScript[index].ToCharArray()) {
+        foreach (char letter in NPCScript[index].ToCharArray())
+        {
             firstNPCdialog.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
     }
 
-    public void nextLine() {
-        if (index < (NPCScript.Length - 1)) {
+    public void nextLine()
+    {
+        if (index < (NPCScript.Length - 1))
+        {
             continueText.gameObject.SetActive(false);
             index++;
             firstNPCdialog.text = "";
-            if(NPCNames.Length != 0)
+            if (NPCNames.Length != 0)
             {
                 NPCNameDialog.text = "";
             }
             StartCoroutine(Typing());
-        } else {
+        }
+        else
+        {
             resetText();
-            Debug.Log("Starting coroutine");
-            if(goToScene != "")
+            chatDone = true;
+            if (goToScene != "")
             {
                 StartCoroutine(sceneScript.changeScenes(goToScene));
-            }else
-            {
-                StartCoroutine(Fade());
             }
-                
-            Debug.Log("Got through coroutine");
+            else
+            {
+                StartCoroutine(FadeOut());
+            }
         }
+
     }
 
-    public IEnumerator Fade() {
+    public IEnumerator FadeOut()
+    {
         fadeIn = true;
         fadeOut = false;
-        SameSceneFade();
         yield return new WaitForSeconds(2);
+    }
+
+    public IEnumerator FadeIn()
+    {
         fadeIn = false;
         fadeOut = true;
-        SameSceneFade();
         yield return new WaitForSeconds(2);
     }
 
     public void SameSceneFade()
     {
-        if (fadeIn) {
-            if (canvasGroup.alpha < 1) {
+        if (fadeIn)
+        {
+            if (canvasGroup.alpha < 1)
+            {
                 canvasGroup.alpha += timeToFade * Time.deltaTime;
-                if (canvasGroup.alpha >= 1) {
+                if (canvasGroup.alpha >= 1)
+                {
                     fadeIn = false;
-                    if(hidingSpot != null)
+                    if (hidingSpot != null)
                         hidingSpot.TurnOffAndHide();
+                    enabled = false;
                 }
             }
         }
 
-        if (fadeOut) {
-            if (canvasGroup.alpha >= 0) {
+        if (fadeOut)
+        {
+            if (canvasGroup.alpha >= 0)
+            {
                 canvasGroup.alpha -= timeToFade * Time.deltaTime;
-                if (canvasGroup.alpha == 0) {
+                if (canvasGroup.alpha == 0)
+                {
                     fadeOut = false;
                 }
             }
