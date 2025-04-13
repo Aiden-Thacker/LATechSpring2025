@@ -31,10 +31,10 @@ public class NPCInteractions : MonoBehaviour
     public CanvasGroup canvasGroup;
     public bool fadeIn = false;
     public bool fadeOut = false;
-    public float timeToFade;
+    public float timeToFade; 
     public CutScene hidingSpot;
     public CutSceneCountDown countDownDialog;
-
+    
 
     void Start()
     {
@@ -124,9 +124,9 @@ public class NPCInteractions : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    Debug.Log("Enter key was pressed");
-                    nextLine();
-                }
+                Debug.Log("Enter key was pressed");
+                nextLine();
+            }
             }
         }
 
@@ -208,6 +208,7 @@ public class NPCInteractions : MonoBehaviour
             {
                 StartCoroutine(FadeOut());
             }
+            //Debug.Log("Got through coroutine");
         }
 
     }
