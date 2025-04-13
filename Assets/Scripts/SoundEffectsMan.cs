@@ -14,6 +14,7 @@ public class SoundEffectsMan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        theSceneImIn = SceneManager.GetSceneByName("SchoolScene");
     }
 
     // Update is called once per frame
@@ -22,21 +23,14 @@ public class SoundEffectsMan : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
     }
 
-    public void schoolSceneSd() {
-        while (currentScene == theSceneImIn) {
-
-        }
-    }
-
-    IEnumerator playClipsOnInterval() {
-        yield return new WaitForSeconds(10f);
+    public IEnumerator playClipsOnInterval() {
+        yield return new WaitForSeconds(3f);
         while (currentScene == theSceneImIn) {
             foreach (AudioClip clip in audioClips) {
                 audioSource.clip = clip;
                 audioSource.Play();
-                yield return new WaitForSeconds(10f);
+                yield return new WaitForSeconds(3f);
             }
         }
     }
 }
-
