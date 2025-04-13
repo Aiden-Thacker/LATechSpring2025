@@ -16,6 +16,7 @@ public class NPCInteractions : MonoBehaviour {
     public TextMeshProUGUI continueText;
     public float wordSpeed;
     public bool playerInRange;
+    public ChangeScenes sceneScript;
     
 
     void Start() {
@@ -99,6 +100,9 @@ public class NPCInteractions : MonoBehaviour {
             StartCoroutine(Typing());
         } else {
             resetText();
+            Debug.Log("Starting coroutine");
+            StartCoroutine(sceneScript.changeScenes());
+            Debug.Log("Got through coroutine");
         }
     }
 }
