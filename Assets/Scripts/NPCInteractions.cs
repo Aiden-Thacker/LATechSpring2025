@@ -40,7 +40,8 @@ public class NPCInteractions : MonoBehaviour
         dialogPanel.SetActive(false);
         chatButton.gameObject.SetActive(false);
         continueText.gameObject.SetActive(false);
-        if (turnOffNPCRenderer)
+        sceneScript.fadeOut = true;
+        if(turnOffNPCRenderer)
         {
             npcRenderer.enabled = false;
         }

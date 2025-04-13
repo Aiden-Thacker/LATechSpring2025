@@ -8,7 +8,7 @@ public class ChangeScenes : MonoBehaviour{
     public CanvasGroup canvasGroup;
     public bool fadeIn = false;
     public bool fadeOut = false;
-    public float timeToFade; 
+    public float timeToFade;
 
     public IEnumerator changeScenes(string sceneName) {
         fadeIn = true;
@@ -29,8 +29,10 @@ public class ChangeScenes : MonoBehaviour{
 
         if (fadeOut) {
             if (canvasGroup.alpha >= 0) {
+                Debug.Log("Alpha value, going down now: " + canvasGroup.alpha);
                 canvasGroup.alpha -= timeToFade * Time.deltaTime;
                 if (canvasGroup.alpha == 0) {
+                    Debug.Log("Finished fading out");
                     fadeOut = false;
                 }
             }
