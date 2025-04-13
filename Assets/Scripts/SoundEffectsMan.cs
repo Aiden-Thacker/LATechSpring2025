@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SoundEffectsMan : MonoBehaviour
 {
     Scene theSceneImIn;
+    public string sceneName;
 
     public AudioSource audioSource;
     public AudioClip[] audioClips;
@@ -14,7 +15,7 @@ public class SoundEffectsMan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        theSceneImIn = SceneManager.GetSceneByName("SchoolScene");
+        theSceneImIn = SceneManager.GetSceneByName(sceneName);
     }
 
     // Update is called once per frame
