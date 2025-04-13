@@ -46,7 +46,10 @@ public class NPCInteractions : MonoBehaviour
         dialogPanel.SetActive(false);
         continueText.gameObject.SetActive(false);
         sceneScript.fadeOut = true;
-        soundRoutine = StartCoroutine(soundMan.playClipsOnInterval());
+        if(soundMan != null)
+        {
+            soundRoutine = StartCoroutine(soundMan.playClipsOnInterval());
+        }
         if(turnOffNPCRenderer)
         {
             npcRenderer.enabled = false;
@@ -75,6 +78,9 @@ public class NPCInteractions : MonoBehaviour
         {
             startChat.SetActive(true);
             Debug.Log("Show up");
+        }else
+        {
+            startChat.SetActive(false);
         }
         if (autoStart && playerInRange)
         {
