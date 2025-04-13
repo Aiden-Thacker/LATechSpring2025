@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class NPCInteractions : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class NPCInteractions : MonoBehaviour
     private int index;
     public PlayerController playerController;
 
-    public Button chatButton;
+    public GameObject startChat;
     public TextMeshProUGUI continueText;
     public float wordSpeed;
     public bool autoStart;
@@ -38,7 +39,6 @@ public class NPCInteractions : MonoBehaviour
     void Start()
     {
         dialogPanel.SetActive(false);
-        chatButton.gameObject.SetActive(false);
         continueText.gameObject.SetActive(false);
         sceneScript.fadeOut = true;
         if(turnOffNPCRenderer)
@@ -49,13 +49,30 @@ public class NPCInteractions : MonoBehaviour
         {
             npcRenderer.enabled = true;
         }
+
+        startChat.SetActive(false);
+        if(autoStart)
+        {
+            chatChecker = false;
+        }
+        else
+        {
+            chatChecker = true;
+        }
     }
 
     void Update()
     {
+        if(playerInRange && chatChecker)
+        {
+            startChat.SetActive(true);
+            Debug.Log("Show up");
+        }else
+        {
+            startChat.SetActive(false);
+        }
         if (autoStart && playerInRange)
         {
-            chatButton.gameObject.SetActive(false);
             playerController.enabled = false;
             //npcRenderer.enabled = true;
             if (dialogPanel.activeInHierarchy)
@@ -64,8 +81,6 @@ public class NPCInteractions : MonoBehaviour
             }
             else
             {
-                chatChecker = false;
-
                 dialogPanel.SetActive(true);
                 Debug.Log("Help me");
                 StartCoroutine(Typing());
@@ -82,7 +97,6 @@ public class NPCInteractions : MonoBehaviour
             }
             else
             {
-                chatChecker = false;
 
                 dialogPanel.SetActive(true);
                 StartCoroutine(Typing());
@@ -116,11 +130,6 @@ public class NPCInteractions : MonoBehaviour
             }
         }
 
-        if (chatButton.gameObject.activeInHierarchy && chatChecker == false)
-        {
-            chatButton.gameObject.SetActive(false);
-        }
-
         if (chatDone && countDownDialog != null)
         {
             if (countDownDialog.chatDone)
@@ -138,8 +147,6 @@ public class NPCInteractions : MonoBehaviour
         {
             playerInRange = true;
             Debug.Log("Player in range of NPC");
-            chatButton.gameObject.SetActive(true);
-            chatChecker = true;
         }
     }
 
@@ -148,7 +155,6 @@ public class NPCInteractions : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            chatChecker = false;
         }
     }
 

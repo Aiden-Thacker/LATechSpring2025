@@ -1431,7 +1431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 606, y: -97}
+  m_AnchoredPosition: {x: 372.02, y: -97}
   m_SizeDelta: {x: 1200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726113789
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Eyes n' Seek
+  m_text: Sunset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de7fabc27d7574759a62b24cf552e1dd, type: 2}
   m_sharedMaterial: {fileID: -185769069048328675, guid: de7fabc27d7574759a62b24cf552e1dd, type: 2}
