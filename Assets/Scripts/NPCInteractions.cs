@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine.SceneManagement;
 
 public class NPCInteractions : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class NPCInteractions : MonoBehaviour
     public float timeToFade; 
     public CutScene hidingSpot;
     public CutSceneCountDown countDownDialog;
+
+    public SoundEffectsMan soundMan;
+    public Coroutine soundRoutine;
     
 
     void Start()
@@ -42,6 +46,7 @@ public class NPCInteractions : MonoBehaviour
         dialogPanel.SetActive(false);
         continueText.gameObject.SetActive(false);
         sceneScript.fadeOut = true;
+        soundRoutine = StartCoroutine(soundMan.playClipsOnInterval());
         if(turnOffNPCRenderer)
         {
             npcRenderer.enabled = false;
@@ -208,6 +213,10 @@ public class NPCInteractions : MonoBehaviour
             chatDone = true;
             if (goToScene != "")
             {
+                if (soundRoutine != null) {
+                    StopCoroutine(soundRoutine);
+                    soundRoutine = null;
+                }
                 StartCoroutine(sceneScript.changeScenes(goToScene));
             }
             else
