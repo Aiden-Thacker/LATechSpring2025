@@ -8,12 +8,24 @@ public class ChangeScenes : MonoBehaviour{
     public CanvasGroup canvasGroup;
     public bool fadeIn = false;
     public bool fadeOut = false;
-    public float timeToFade; 
+    public float timeToFade;
 
-    public IEnumerator changeScenes() {
-        fadeIn = true;
+    public IEnumerator fadeToNewScene() {
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "SchoolScene") {
+            fadeIn = true;
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene("StreetScene");
+
+        } else if (currentScene.name == "StreetScene") {
+            fadeIn = true;
+            yield return new WaitForSeconds(3);
+        }
+    }
+
+    public IEnumerator fadeInScene() {
+        fadeOut = true;
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("StreetScene");
     }
 
     // Update is called once per frame
@@ -29,8 +41,10 @@ public class ChangeScenes : MonoBehaviour{
 
         if (fadeOut) {
             if (canvasGroup.alpha >= 0) {
+                Debug.Log("Alpha value, going down now: " + canvasGroup.alpha);
                 canvasGroup.alpha -= timeToFade * Time.deltaTime;
                 if (canvasGroup.alpha == 0) {
+                    Debug.Log("Finished fading out");
                     fadeOut = false;
                 }
             }

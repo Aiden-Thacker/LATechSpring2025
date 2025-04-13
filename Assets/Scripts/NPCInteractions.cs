@@ -28,6 +28,7 @@ public class NPCInteractions : MonoBehaviour {
         chatButton.gameObject.SetActive(false);
         continueText.gameObject.SetActive(false);
         npcRenderer.enabled = false;
+        sceneScript.fadeOut = true;
     }
 
     void Update() {
@@ -122,7 +123,7 @@ public class NPCInteractions : MonoBehaviour {
         } else {
             resetText();
             Debug.Log("Starting coroutine");
-            StartCoroutine(sceneScript.changeScenes());
+            StartCoroutine(sceneScript.fadeToNewScene());
             Debug.Log("Got through coroutine");
         }
     }
