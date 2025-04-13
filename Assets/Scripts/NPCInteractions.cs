@@ -18,21 +18,51 @@ public class NPCInteractions : MonoBehaviour {
     public Button chatButton;
     public TextMeshProUGUI continueText;
     public float wordSpeed;
+    public bool autoStart;
     public bool playerInRange;
     public bool chatChecker;
+    public bool turnOffNPCRenderer;
+    public string goToScene;
     public ChangeScenes sceneScript;
+
+    public CanvasGroup canvasGroup;
+    public bool fadeIn = false;
+    public bool fadeOut = false;
+    public float timeToFade; 
+    public CutScene hidingSpot;
     
 
     void Start() {
         dialogPanel.SetActive(false);
         chatButton.gameObject.SetActive(false);
         continueText.gameObject.SetActive(false);
-        npcRenderer.enabled = false;
         sceneScript.fadeOut = true;
+        if(turnOffNPCRenderer)
+        {
+            npcRenderer.enabled = false;
+        }else
+        {
+            npcRenderer.enabled = true;
+        }
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
+        if(autoStart && playerInRange)
+        {
+            chatButton.gameObject.SetActive(false);
+            playerController.enabled = false;
+            //npcRenderer.enabled = true;
+            if (dialogPanel.activeInHierarchy) {
+                resetText();
+            } else {
+                chatChecker = false;
+
+                dialogPanel.SetActive(true);
+                StartCoroutine(Typing());
+            }
+            autoStart = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
             playerController.enabled = false;
             npcRenderer.enabled = true;
             if (dialogPanel.activeInHierarchy) {
@@ -71,6 +101,8 @@ public class NPCInteractions : MonoBehaviour {
         {
             chatButton.gameObject.SetActive(false);
         }
+
+        SameSceneFade();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -91,23 +123,20 @@ public class NPCInteractions : MonoBehaviour {
 
     public void resetText() {
         firstNPCdialog.text = "";
+        NPCNameDialog.text = "";
         index = 0;
         dialogPanel.SetActive(false);
         playerController.enabled = true;
-
-        /*if (chatButton.gameObject.activeInHierarchy) {
-            return;
-        } else {
-            chatButton.gameObject.SetActive(true);
-        } */
-
-        // call animation transition here
-            // set animation trigger
-            // wait for a few seconds
-            // load next scene
     }
 
     IEnumerator Typing() {
+        if(NPCNames.Length != 0)
+        {
+            foreach (char letter in NPCNames[index].ToCharArray())
+            {
+                NPCNameDialog.text += letter;
+            }
+        }
         foreach (char letter in NPCScript[index].ToCharArray()) {
             firstNPCdialog.text += letter;
             yield return new WaitForSeconds(wordSpeed);
@@ -119,12 +148,58 @@ public class NPCInteractions : MonoBehaviour {
             continueText.gameObject.SetActive(false);
             index++;
             firstNPCdialog.text = "";
+            if(NPCNames.Length != 0)
+            {
+                NPCNameDialog.text = "";
+            }
             StartCoroutine(Typing());
         } else {
             resetText();
             Debug.Log("Starting coroutine");
-            StartCoroutine(sceneScript.fadeToNewScene());
+            if(goToScene != "")
+            {
+                StartCoroutine(sceneScript.changeScenes(goToScene));
+            }else
+            {
+                StartCoroutine(Fade());
+            }
+                
+            //StartCoroutine(sceneScript.fadeToNewScene());             bays new stuff, want to talk about how to work it in
             Debug.Log("Got through coroutine");
+        }
+    }
+
+    public IEnumerator Fade() {
+        fadeIn = true;
+        fadeOut = false;
+        SameSceneFade();
+        yield return new WaitForSeconds(2);
+        fadeIn = false;
+        fadeOut = true;
+        SameSceneFade();
+        yield return new WaitForSeconds(2);
+    }
+
+    public void SameSceneFade()
+    {
+        if (fadeIn) {
+            if (canvasGroup.alpha < 1) {
+                canvasGroup.alpha += timeToFade * Time.deltaTime;
+                if (canvasGroup.alpha >= 1) {
+                    fadeIn = false;
+                    if(hidingSpot != null)
+                        hidingSpot.TurnOffAndHide();
+                }
+            }
+        }
+
+        if (fadeOut) {
+            if (canvasGroup.alpha >= 0) {
+                canvasGroup.alpha -= timeToFade * Time.deltaTime;
+                if (canvasGroup.alpha == 0) {
+                    fadeOut = false;
+                }
+            }
         }
     }
 }
