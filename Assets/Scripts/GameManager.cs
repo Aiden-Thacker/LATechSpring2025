@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         if (loseScreen == null)
             loseScreen = FindFirstObjectByType<LoseMenu>();
-        
+
         if (volume == null)
             volume = FindFirstObjectByType<Volume>();
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(startTimer)
+        if (startTimer)
         {
             ChangeVolume();
         }
@@ -65,35 +65,39 @@ public class GameManager : MonoBehaviour
     void ChangeVolume()
     {
         seconds += Time.fixedDeltaTime * tick;
-        if(seconds >= 60)
+        if (seconds >= 60)
         {
             seconds = 0;
             min++;
         }
-        if(min >= 60)
+        if (min >= 60)
         {
             min = 0;
             hours++;
         }
-        if(hours >= 13)
+        if (hours >= 13)
         {
             hours = 0;
         }
-        
-        if(hours >= 9 && hours < 11) // Dusk
+
+        if (hours >= 9 && hours < 11) // Dusk
         {
-            volume.weight = ((hours-9) * 60 + min)/120.0f;
-            if(!activateLights)
+            if (volume != null)
             {
-                //Turn On lights
-                for(int i = 0; i < lights.Count; i++)
+                volume.weight = ((hours - 9) * 60 + min) / 120.0f;
+                if (!activateLights)
                 {
-                    lights[i].SetActive(true);
+                    //Turn On lights
+                    for (int i = 0; i < lights.Count; i++)
+                    {
+                        lights[i].SetActive(true);
+                    }
+                    activateLights = true;
                 }
-                activateLights = true;
             }
+
         }
-        if(hours == 12 && loseScreen != null)
+        if (hours == 12 && loseScreen != null)
         {
             Debug.Log("You Lose");
             loseScreen.Lose();
