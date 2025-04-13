@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &82951757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,7 +903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &581610508
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1092,13 +1092,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogPanel: {fileID: 1217708596}
   firstNPCdialog: {fileID: 460283872}
+  NPCNameDialog: {fileID: 0}
+  npcRenderer: {fileID: 0}
+  NPCNames: []
   NPCScript:
   - Welcome to scene two!
   - Almost to the end...
+  playerController: {fileID: 0}
   chatButton: {fileID: 1438994901}
-  continueButton: {fileID: 1161044828}
+  continueText: {fileID: 0}
   wordSpeed: 0.05
   playerInRange: 0
+  chatChecker: 0
+  sceneScript: {fileID: 0}
 --- !u!1 &1070665836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1438994900
 RectTransform:
   m_ObjectHideFlags: 0

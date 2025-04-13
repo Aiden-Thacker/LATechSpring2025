@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainPlayScene.unity
     guid: f552095b3ffac8143b99905598ee783c
   - enabled: 1
-    path: Assets/Scenes/Testing.unity
+    path: Assets/Scenes/SchoolScene.unity
     guid: 37e1dece67de28a458146750264a6a71
   - enabled: 1
-    path: Assets/Scenes/Testing2.unity
+    path: Assets/Scenes/StreetScene.unity
     guid: e46fc3402b752504eb8d5e003b6b9c1c
   m_configObjects: {}

@@ -19,6 +19,7 @@ public class NPCInteractions : MonoBehaviour {
     public TextMeshProUGUI continueText;
     public float wordSpeed;
     public bool playerInRange;
+    public bool chatChecker;
     public ChangeScenes sceneScript;
     
 
@@ -36,9 +37,7 @@ public class NPCInteractions : MonoBehaviour {
             if (dialogPanel.activeInHierarchy) {
                 resetText();
             } else {
-                if (chatButton.gameObject.activeInHierarchy) {
-                    chatButton.gameObject.SetActive(false);
-                }
+                chatChecker = false;
 
                 dialogPanel.SetActive(true);
                 StartCoroutine(Typing());
@@ -48,23 +47,28 @@ public class NPCInteractions : MonoBehaviour {
         if(NPCNames.Length == 0)
         {
             if (firstNPCdialog.text == NPCScript[index]) {
-            continueText.gameObject.SetActive(true);
+                continueText.gameObject.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.Return)) {
-                Debug.Log("Enter key was pressed");
-                nextLine();
-            }
+                if (Input.GetKeyDown(KeyCode.Return)) {
+                    Debug.Log("Enter key was pressed");
+                    nextLine();
+                }
             }
         }else 
         {
             if (firstNPCdialog.text == NPCScript[index] && NPCNameDialog.text == NPCNames[index]) {
-            continueText.gameObject.SetActive(true);
+                continueText.gameObject.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.Return)) {
                 Debug.Log("Enter key was pressed");
                 nextLine();
             }
             }
+        }
+
+        if(chatButton.gameObject.activeInHierarchy && chatChecker == false)
+        {
+            chatButton.gameObject.SetActive(false);
         }
     }
 
@@ -73,13 +77,14 @@ public class NPCInteractions : MonoBehaviour {
             playerInRange = true;
             Debug.Log("Player in range of NPC");
             chatButton.gameObject.SetActive(true);
+            chatChecker = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             playerInRange = false;
-            chatButton.gameObject.SetActive(false);
+            chatChecker = false;
         }
     }
 

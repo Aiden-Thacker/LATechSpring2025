@@ -12,13 +12,13 @@ public class ChangeScenes : MonoBehaviour{
 
     public IEnumerator changeScenes() {
         fadeIn = true;
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("Testing2");
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("StreetScene");
     }
 
     // Update is called once per frame
     void Update() {
-        if (fadeIn == true) {
+        if (fadeIn) {
             if (canvasGroup.alpha < 1) {
                 canvasGroup.alpha += timeToFade * Time.deltaTime;
                 if (canvasGroup.alpha >= 1) {
@@ -27,7 +27,7 @@ public class ChangeScenes : MonoBehaviour{
             }
         }
 
-        if (fadeOut == true) {
+        if (fadeOut) {
             if (canvasGroup.alpha >= 0) {
                 canvasGroup.alpha -= timeToFade * Time.deltaTime;
                 if (canvasGroup.alpha == 0) {
